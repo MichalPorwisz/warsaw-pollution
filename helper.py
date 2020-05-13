@@ -28,7 +28,8 @@ class XGBWrapper:
         time_str = f'{time.localtime(time.time()).tm_mday}_{time.localtime(time.time()).tm_hour}_{time.localtime(time.time()).tm_min}'
 
         for type in ['weight', 'gain', 'cover', 'total_gain', 'total_cover']:
-            xgb.plot_importance(self.model.get_booster(), importance_type=type)
+            fig, ax = plt.subplots(figsize=(20, 7))
+            xgb.plot_importance(self.model.get_booster(), importance_type=type, ax=ax, max_num_features=20)
             plt.savefig(f'./visualizations/importances_{type}_{time_str}.png')
             plt.close()
 
