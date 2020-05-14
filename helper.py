@@ -1,6 +1,7 @@
 import time
 
 import matplotlib.pyplot as plt
+import shap
 import xgboost as xgb
 
 
@@ -11,10 +12,12 @@ class XGBWrapper:
         self.eval_set = eval_set
         self.verbose = verbose
 
-        self.model =xgb.XGBRegressor(**xgb_params)
+        self.model = xgb.XGBRegressor(**xgb_params)
+        self.X = None
 
     def fit(self, X, y):
 
+        self.X = X
         if self.eval_set is None:
             self.eval_set = [(X, y)]
 
@@ -32,6 +35,12 @@ class XGBWrapper:
             xgb.plot_importance(self.model.get_booster(), importance_type=type, ax=ax, max_num_features=20)
             plt.savefig(f'./visualizations/importances_{type}_{time_str}.png')
             plt.close()
+
+        explainer = shap.TreeExplainer(self.model)
+        shap_values = explainer.shap_values(self.X)
+        shap.summary_plot(shap_values, self.X, plot_type="bar", show=False, plot_size=(25, 7))
+        plt.savefig(f'./visualizations/importances_shap_{time_str}.png')
+        plt.close()
 
     def get_model(self):
         return self.model
