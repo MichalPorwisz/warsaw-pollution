@@ -23,9 +23,8 @@ def custom_valid_scheme(model, train, valid, feats, target, agg_function, early_
     while epochs_without_improvement < early_stopping:
         _train(X_train, model, y_train, iter)
 
-        new_valid = predict_one_by_one(train=train, test=valid, feats=feats, model=model,
-                                                 agg_function=agg_function,
-                                                       extract_test_func=extract_test_func)
+        new_valid = predict_one_by_one(train=train, test=valid, feats=feats, model=model, agg_function=agg_function,
+                                       extract_test_func=extract_test_func)
         score = rmse(valid[target].values, new_valid[target].values)
         print(f'RMSE on valid: {score}')
 
@@ -41,6 +40,6 @@ def custom_valid_scheme(model, train, valid, feats, target, agg_function, early_
     model.get_model().set_params(n_estimators=(best_iter * val_at_num_epoch))
     model.fit(X_train, y_train)
 
-    print(f'score didnt improve for {epochs_without_improvement} epochs - finished training with best score of {best_score}')
+    print(f'score didn\'t improve for {epochs_without_improvement} epochs - finished training with best score of {best_score}')
     return best_score
 

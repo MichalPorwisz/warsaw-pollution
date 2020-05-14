@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../')
+sys.path.append('../')    # needed for preprocessing.sh to work correctly
 import numpy as np
 import pandas as pd
 

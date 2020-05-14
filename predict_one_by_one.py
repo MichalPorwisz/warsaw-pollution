@@ -14,7 +14,7 @@ def predict_one_by_one(train, test, feats, model, agg_function, target='pm25',
         # should works as long as largest_lag is really largest lag
         idxs_list = [list(range(idx - largest_lag, idx + 1)) for idx in test_part.index]
         idxs = flatten(idxs_list)
-        df = agg_function(combined.iloc[idxs], 1)
+        df = agg_function(combined.iloc[idxs], test_size=1)
 
         test_for_predictions = df.loc[test_part.index][feats]
         test_for_predictions = convert_to_float_or_factorize_objects(test_for_predictions, feats)

@@ -1,5 +1,4 @@
 import functools
-import re
 
 from helper import *
 from predict_one_by_one import predict_one_by_one
@@ -25,7 +24,7 @@ train_and_valid, test = read_data('./data_processed/%s' % DATA_NAME, ext='h5')
 
 
 basic_feats = ['hour', 'day_of_month', 'day_of_week', 'month', 'year', 'median_by_hour', 'deviation_from_previous']
-rolling_mean_feats = [col for col in train_and_valid.columns if (('rolling' in col) and (int(re.search('[0-9]+', col).group(0)) in [1, 2, 3, 4, 5]) and ('median' not in col)) and ('hour' not in col)]
+rolling_mean_feats = [col for col in train_and_valid.columns if ('rolling' in col and 'median' not in col)]
 print(rolling_mean_feats)
 
 

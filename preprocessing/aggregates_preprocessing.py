@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../')
+sys.path.append('../')  # needed for preprocessing.sh to work correctly
 
 from tqdm import tqdm
 import pandas as pd
