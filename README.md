@@ -11,14 +11,24 @@ Feature importances pokazują, że zdecydowanie najważniejszą cechą był wła
 * **Rolling aggregates z lagiem 24 dla historycznej temperatury (nie prognozowanej).** Nie do końca wiem dlaczego, ale średnia temperatura sprzed 24 godzin miała zauważalny pozytywny wpływ na wynik mimo dużego lagu oraz posiadaniu również prognozowanej temperatury.
 
 \
+**Feature importances - gain**
+![Gain](https://github.com/MichalPorwisz/warsaw-pollution/blob/master/visualizations/importances_gain_13_22_8.png?raw=true)
+
+\
+**SHAP summary plot**\
+*https://shap.readthedocs.io/en/latest/*
+\
+![SHAP summary plot](https://github.com/MichalPorwisz/warsaw-pollution/blob/master/visualizations/importances_shap_13_22_8.png?raw=true)
+
+\
 **Wyniki przy usunięciu niektórych cech.**
 Z ciekawości sprawdziłem jakie uzyskałbym wyniki, gdybym usunął którąkolwiek z powyżej opisanych grup cech. Wynik przy użyciu wszystkich cech to 11,34 (na private). Wyniki przy usuwaniu cech były następujące (wszystkie na private):
-* bez cech rolling_meanX - RMSE powyżej 20  (co potwierdza wagę tych cech)
-* bez uwzględnienia prognozowanej pogody - 15,23
-* bez uwzględnienia median_by_hour oraz deviation_from_previous - 13,64
-* bez rolling agregatów dla historycznej temperatury - 13,88
+* bez cech rolling_meanX - RMSE powyżej **20**  (co potwierdza wagę tych cech)
+* bez uwzględnienia prognozowanej pogody - **15,23**
+* bez uwzględnienia median_by_hour oraz deviation_from_previous - **13,64**
+* bez rolling agregatów dla historycznej temperatury - **13,88**
 
-Eksperymenty te są o tyle wadliwe, że były wykonane bez hyperparameter searchu (w rozwiązaniu konkursowym sprawdziłem około 20 zestawów parametrów - nie jakoś bardzo dużo, ale jednak). Wykorzystane były te same parametry co w ostatecznym rozwiązaniu konkursowym. Mimo wszystko eksperymenty te sugerują jednak, że wszystkie wyżej opisane cechy były istotne dla wyniku. Z drugiej strony mogą też sugerować niestabilność rozwiązania, ale to można by zweryfikować na większym zbiorze danych.
+Eksperymenty te są o tyle wadliwe, że były wykonane bez hyperparameter searchu (w rozwiązaniu konkursowym sprawdziłem jakieś 10-20 zestawów parametrów - nie jakoś bardzo dużo, ale jednak). Wykorzystane były te same parametry co w ostatecznym rozwiązaniu konkursowym. Mimo wszystko eksperymenty te sugerują jednak, że wszystkie wyżej opisane cechy były istotne dla wyniku. Z drugiej strony mogą też sugerować niestabilność rozwiązania, ale to można by zweryfikować na większym zbiorze danych.
 
 \
 **Struktura kodu/najważniejsze skrypty:**
