@@ -1,4 +1,4 @@
-# Warsaw Pollution Prediction
+# Warsaw Pollution Prediction (1st place from a competition)
 
 **Główne wykorzystane pomysły:**
 * **Predykcja tylko jednej kropki na raz.** Poziom smogu w kolejnej godzinie będzie podobny do poziomu z poprzedniej godziny. Z kolei poziom smogu sprzed 24 godzin nie będzie miał większego wpływu na obecny poziom. W związku z tym agregaty muszą mieć jak najmniejszy lag - najlepiej tylko 1 godzinę. Oznacza to, że trzeba przewidywać tylko jedną kropkę na przód, przeliczać agregaty, predykować kolejną kropkę, przeliczać agregaty i tak w kółku aż do spredykowania wszystkich 24 kropek. Zaimplementowałem w ten sposób zarówno finalną predykcję jak i walidację. Planowałem zaimplementować również trening w ten sposób, ale brakło mi czasu.
