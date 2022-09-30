@@ -12,7 +12,7 @@ decorator==4.4.2
 future==0.18.2
 graphviz==0.14
 hyperopt==0.2.4
-joblib==0.14.1
+joblib==1.2.0
 kiwisolver==1.1.0
 Mako==1.1.0
 MarkupSafe==1.1.1
